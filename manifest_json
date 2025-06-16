@@ -1,0 +1,15 @@
+{
+  "name": "HT CALCULATOR",
+  "short_name": "HTCalc",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#202124",
+  "theme_color": "#202124",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
