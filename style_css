@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  touch-action: manipulation;
+  overflow: hidden;
+}
+:root {
+  --bg: #fff;
+  --fg: #000;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #202124;
+    --fg: #fff;
+  }
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0.5em;
+}
+main {
+  padding: 1em;
+}
+input#display {
+  width: 100%;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.button-group button {
+  flex: 1 0 20%;
+  font-size: 1em;
+  padding: 0.5em;
+}
+.hidden {
+  display: none;
+}
