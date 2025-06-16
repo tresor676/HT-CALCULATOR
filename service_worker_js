@@ -1,0 +1,28 @@
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open('ht-calc-cache').then(cache => {
+      return cache.addAll([
+        './',
+        './index.html',
+        './style.css',
+        './main.js',
+        './manifest.json',
+        './logo.png'
+      ]);
+    })
+  );
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(response => response || fetch(e.request))
+  );
+});
+"""
+
+files = {
+    "index.html": index_html,
+    "style.css": style_css,
+    "main.js": main_js,
+    "manifest.json": manifest_json,
+    "service-worker.js": service_worker_js,
+}
