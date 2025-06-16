@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>HT CALCULATOR</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="main.js"></script>
+  <meta name="theme-color" content="#202124" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <button onclick="switchTab('base')">De base</button>
+      <button onclick="switchTab('scientific')">Scientifique</button>
+      <button onclick="switchTab('settings')">Paramètres</button>
+    </header>
+    <main>
+      <input id="display" type="text" readonly />
+      <div id="buttons-base" class="button-group"></div>
+      <div id="buttons-scientific" class="button-group hidden"></div>
+      <div id="settings" class="hidden">
+        <h3>Paramètres</h3>
+        <label>Langue (dictée) : <select id="speech-lang"></select></label>
+        <label>Langue (lecture) : <select id="read-lang"></select></label>
+        <button onclick="toggleTheme()">Changer le thème</button>
+        <button onclick="toggleOrientation()">Changer l'orientation</button>
+        <button onclick="toggleAngleMode()">Changer Degrés/Radians</button>
+        <button onclick="shareApp()">Partager l'app</button>
+        <p>HT CALCULATOR - À propos : Version Offline PWA</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
