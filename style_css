@@ -73,3 +73,14 @@ button:active {
 button#angle-mode {
   background-color: #0057e7;
 }
+
+.image-personnalisee {
+  text-align: center;
+  padding: 10px;
+}
+
+.image-personnalisee img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
