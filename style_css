@@ -1,128 +1,120 @@
-/* Reset et base */
+/* Reset minimum */
 * {
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* bloque scroll vertical */
-  touch-action: manipulation; /* pour bloquer certains gestes */
+body, html {
+  margin: 0; padding: 0;
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
   user-select: none;
-  background: #111;
-  color: #eee;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Logo en haut */
-.logo-container {
+  touch-action: manipulation;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
-  background-color: #222;
+  align-items: center;
 }
 
-.logo-container img {
-  max-height: 40px;
-  width: auto;
+main {
+  width: 340px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Afficheur */
-.display {
-  background-color: #000;
-  color: #0f0;
-  font-size: 1.8rem;
-  padding: 15px 20px;
-  text-align: right;
-  white-space: nowrap;
-  overflow-x: auto;
-  user-select: text;
-  border-bottom: 2px solid #0f0;
-  max-width: 100%;
-}
-
-/* Boutons de switch d'écran */
-.switcher {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  background-color: #222;
-  padding: 10px 0;
-}
-
-.switcher button {
-  background-color: #444;
-  border: none;
-  border-radius: 5px;
-  color: #eee;
-  font-size: 1rem;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.switcher button:hover {
-  background-color: #0f0;
-}
-
-/* Conteneur écrans */
-.screens-wrapper {
-  height: calc(100vh - 120px); /* hauteur totale - logo - afficheur - switcher */
-  padding: 10px 15px;
-  background-color: #222;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
-}
-
-/* Chaque écran */
-.screen {
+#display {
   width: 100%;
-  height: 100%;
-  overflow-y: auto;
+  height: 60px;
+  background: #222;
+  color: #0f0;
+  font-size: 28px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+  user-select: text;
+  margin-bottom: 12px;
 }
 
-/* Masquer écran */
+/* Wrapper bouton mode */
+#mode-switch-wrapper {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+#mode-switch-wrapper button {
+  flex: 1;
+  background: #28a745;
+  color: white;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  padding: 12px 0;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+#mode-switch-wrapper button:hover {
+  background: #218838;
+}
+
 .hidden {
   display: none !important;
 }
 
-/* Rangée de boutons */
+/* Conteneur des boutons */
+.base-screen, .scientific-screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Ligne de boutons */
 .buttons-row {
   display: flex;
+  gap: 8px;
   justify-content: center;
-  margin: 6px 0;
-  gap: 10px;
 }
 
-/* Boutons */
-button {
-  flex: 1 1 50px;
-  max-width: 70px;
-  padding: 15px 0;
-  font-size: 1.2rem;
-  border-radius: 6px;
+/* Boutons chiffres et opérateurs */
+button:not(#toScientific):not(#toBase) {
+  flex: 1 1 0;
+  min-width: 60px;
+  padding: 14px 0;
+  font-size: 18px;
+  border-radius: 8px;
   border: none;
-  background-color: #333;
-  color: #eee;
+  background: #ddd;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.2s;
+  transition: background-color 0.25s ease;
 }
 
-button:hover {
-  background-color: #0f0;
+button:not(#toScientific):not(#toBase):hover {
+  background: #bbb;
 }
 
-/* Pour boutons spécifiques plus larges */
-button#equals {
-  flex: 2 1 140px;
-  background-color: #0a0;
-  color: #fff;
+/* Adapter les boutons ± et RAD/DEG */
+.buttons-row:last-child button {
+  flex: 1 1 0;
 }
 
-button#equals:hover {
-  background-color: #0c0;
+/* Scroll barre disabled */
+#display::-webkit-scrollbar {
+  display: none;
+}
+#display {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
