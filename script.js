@@ -1,4 +1,5 @@
 // Éléments DOM
+document.addEventListener('DOMContentLoaded', () => {
 const baseScreen = document.querySelector('.base-screen');
 const sciScreen = document.querySelector('.scientific-screen');
 const btnToSci = document.getElementById('toScientific');
