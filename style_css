@@ -1,172 +1,128 @@
-/* Reset basique */
-
+/* Reset et base */
 * {
-
-box-sizing: border-box;
-
-margin: 0;
-
-padding: 0;
-
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+  box-sizing: border-box;
 }
-
-/* Empêche zoom/défilement vertical */
 
 html, body {
-
-overflow-x: hidden;
-
-overflow-y: hidden;
-
-touch-action: manipulation;
-
-user-select: none;
-
--webkit-user-select: none;
-
--moz-user-select: none;
-
--ms-user-select: none;
-
-height: 100vh;
-
-width: 100vw;
-
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* bloque scroll vertical */
+  touch-action: manipulation; /* pour bloquer certains gestes */
+  user-select: none;
+  background: #111;
+  color: #eee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Logo centré */
-
+/* Logo en haut */
 .logo-container {
-
-text-align: center;
-
-padding: 10px 0;
-
-background-color: #222;
-
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #222;
 }
 
 .logo-container img {
-
-height: 50px;
-
-max-width: 90%;
-
+  max-height: 40px;
+  width: auto;
 }
 
-/* Afficheur expression */
-
-#display {
-
-background-color: #111;
-
-color: #eee;
-
-padding: 15px;
-
-font-size: 1.5rem;
-
-text-align: right;
-
-min-height: 2.5em;
-
-overflow-x: auto;
-
-white-space: nowrap;
-
-user-select: text;
-
+/* Afficheur */
+.display {
+  background-color: #000;
+  color: #0f0;
+  font-size: 1.8rem;
+  padding: 15px 20px;
+  text-align: right;
+  white-space: nowrap;
+  overflow-x: auto;
+  user-select: text;
+  border-bottom: 2px solid #0f0;
+  max-width: 100%;
 }
 
-/* Conteneur des écrans en flex horizontal et défilable */
+/* Boutons de switch d'écran */
+.switcher {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  background-color: #222;
+  padding: 10px 0;
+}
 
+.switcher button {
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #eee;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.switcher button:hover {
+  background-color: #0f0;
+}
+
+/* Conteneur écrans */
 .screens-wrapper {
-display: flex;
-
-width: 100vw;
-
-height: calc(100vh - 140px); /* ajuster hauteur écran - logo - afficheur */
-
-overflow-x: auto;
-
-scroll-snap-type: x mandatory;
-
--webkit-overflow-scrolling: touch;
-
+  height: calc(100vh - 120px); /* hauteur totale - logo - afficheur - switcher */
+  padding: 10px 15px;
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
-/* Chaque écran prend toute la largeur */
-
+/* Chaque écran */
 .screen {
-
-flex: 0 0 100vw;
-
-scroll-snap-align: start;
-
-padding: 10px;
-
-background-color: #333;
-
-overflow-y: auto;
-
-display: flex;
-
-flex-direction: column;
-
-justify-content: flex-start;
-
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 }
 
-/* Ligne de boutons */
+/* Masquer écran */
+.hidden {
+  display: none !important;
+}
 
+/* Rangée de boutons */
 .buttons-row {
-
-display: flex;
-
-justify-content: center;
-
-margin: 6px 0;
-
-gap: 8px;
-
+  display: flex;
+  justify-content: center;
+  margin: 6px 0;
+  gap: 10px;
 }
 
 /* Boutons */
-
 button {
-
-flex: 1 1 50px;
-
-max-width: 60px;
-
-min-width: 40px;
-
-height: 45px;
-
-font-size: 1rem;
-
-background-color: #444;
-
-color: white;
-
-border: none;
-
-border-radius: 5px;
-
-cursor: pointer;
-
-user-select: none;
-
-transition: background-color 0.2s ease;
-
+  flex: 1 1 50px;
+  max-width: 70px;
+  padding: 15px 0;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #333;
+  color: #eee;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
 }
 
-button:active {
-
-background-color: #666;
-}
 button:hover {
+  background-color: #0f0;
+}
 
-background-color: #555;}
+/* Pour boutons spécifiques plus larges */
+button#equals {
+  flex: 2 1 140px;
+  background-color: #0a0;
+  color: #fff;
+}
+
+button#equals:hover {
+  background-color: #0c0;
+}
