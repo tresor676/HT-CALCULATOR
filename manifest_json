@@ -1,6 +1,6 @@
 {
-  "name": "Calculatrice Scientifique",
-  "short_name": "Calculatrice",
+  "name": "HT CALCULATOR",
+  "short_name": "HT CALC",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#202124",
