@@ -2,80 +2,127 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>HT CALCULATOR</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Manifest PWA -->
-  <link rel="manifest" href="manifest.json" />
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f0f0f0;
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+    }
+    #display {
+      width: 320px;
+      height: 60px;
+      background: #222;
+      color: #0f0;
+      font-size: 24px;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow-x: auto;
+      white-space: nowrap;
+      border-radius: 6px;
+      margin: 15px 0;
+      text-align: right;
+    }
+    .buttons-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+      flex-wrap: nowrap;
+      gap: 6px;
+    }
+    button {
+      flex: 1 1 0;
+      min-width: 40px;
+      padding: 12px 0;
+      font-size: 18px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      background: #ddd;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #bbb;
+    }
+    .hidden {
+      display: none !important;
+    }
+    #toScientific, #toBase {
+      width: 320px;
+      margin: 10px 0;
+      background: #28a745;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
+  <div id="display">0</div>
 
-  <!-- Logo personnalisé -->
-  <div class="logo-container">
-    <img src="images/ht-logo.png" alt="HT Logo personnalisé" />
+  <!-- Bouton pour passer à écran scientifique -->
+  <button id="toScientific">Mode Scientifique</button>
+  <button id="toBase" class="hidden">Retour Mode Base</button>
+
+  <!-- Écran 1 : Options de base -->
+  <div class="base-screen">
+    <div class="buttons-row">
+      <button>7</button><button>8</button><button>9</button><button>/</button>
+    </div>
+    <div class="buttons-row">
+      <button>4</button><button>5</button><button>6</button><button>*</button>
+    </div>
+    <div class="buttons-row">
+      <button>1</button><button>2</button><button>3</button><button>-</button>
+    </div>
+    <div class="buttons-row">
+      <button>0</button><button>.</button><button>±</button><button>+</button>
+    </div>
+    <div class="buttons-row">
+      <button>C</button><button>=</button><button>(</button><button>)</button>
+    </div>
+    <div class="buttons-row">
+      <button>RAD/DEG</button>
+    </div>
   </div>
 
-  <!-- Afficheur -->
-  <div id="display" class="display">0</div>
-
-  <!-- Boutons pour changer d'écran -->
-  <div class="switcher">
-    <button id="toScientific">Mode Scientifique</button>
-    <button id="toBase" class="hidden">Retour</button>
-  </div>
-
-  <!-- Conteneur des écrans -->
-  <div class="screens-wrapper">
-    <!-- Écran 1 : Base -->
-    <div class="screen base-screen">
-      <div class="buttons-row">
-        <button>7</button><button>8</button><button>9</button><button>/</button>
-      </div>
-      <div class="buttons-row">
-        <button>4</button><button>5</button><button>6</button><button>*</button>
-      </div>
-      <div class="buttons-row">
-        <button>1</button><button>2</button><button>3</button><button>-</button>
-      </div>
-      <div class="buttons-row">
-        <button>0</button><button>.</button><button>=</button><button>+</button>
-      </div>
-      <div class="buttons-row">
-        <button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
-      </div>
+  <!-- Écran 2 : Options scientifique + base -->
+  <div class="scientific-screen hidden">
+    <!-- Base -->
+    <div class="buttons-row">
+      <button>7</button><button>8</button><button>9</button><button>/</button>
+    </div>
+    <div class="buttons-row">
+      <button>4</button><button>5</button><button>6</button><button>*</button>
+    </div>
+    <div class="buttons-row">
+      <button>1</button><button>2</button><button>3</button><button>-</button>
+    </div>
+    <div class="buttons-row">
+      <button>0</button><button>.</button><button>±</button><button>+</button>
+    </div>
+    <div class="buttons-row">
+      <button>C</button><button>=</button><button>(</button><button>)</button>
+    </div>
+    <div class="buttons-row">
+      <button>RAD/DEG</button>
     </div>
 
-    <!-- Écran 2 : Scientifique + Base -->
-    <div class="screen scientific-screen hidden">
-      <div class="buttons-row">
-        <button>7</button><button>8</button><button>9</button><button>/</button>
-      </div>
-      <div class="buttons-row">
-        <button>4</button><button>5</button><button>6</button><button>*</button>
-      </div>
-      <div class="buttons-row">
-        <button>1</button><button>2</button><button>3</button><button>-</button>
-      </div>
-      <div class="buttons-row">
-        <button>0</button><button>.</button><button>=</button><button>+</button>
-      </div>
-      <div class="buttons-row">
-        <button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
-      </div>
-      <div class="buttons-row">
-        <button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
-      </div>
-      <div class="buttons-row">
-        <button>ln(</button><button>log(</button><button>^</button><button>(</button><button>)</button>
-      </div>
-      <div class="buttons-row">
-        <button>π</button><button>e</button><button>!</button><button>Ans</button>
-      </div>
+    <!-- Scientifique -->
+    <div class="buttons-row">
+      <button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
+    </div>
+    <div class="buttons-row">
+      <button>ln(</button><button>log(</button><button>exp(</button><button>^</button>
     </div>
   </div>
 
