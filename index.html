@@ -1,142 +1,84 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>HT CALCULATOR</title>
 
-<meta charset="UTF-8" />
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json" />
 
-user-scalable=no" />
-
-<title>HT CALCULATOR</title>
-
-<!-- Favicon -->
-
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-<!-- Manifest PWA -->
-
-<link rel="manifest" href="manifest.json" />
-
-<link rel="stylesheet" href="style.css" />
-
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<!-- Logo personnalisé -->
+  <!-- Logo personnalisé -->
+  <div class="logo-container">
+    <img src="images/ht-logo.png" alt="HT Logo personnalisé" />
+  </div>
 
-<div class="logo-container">
+  <!-- Afficheur -->
+  <div id="display" class="display">0</div>
 
-<img src="images/ht-logo.png" alt="HT Logo personnalisé" />
+  <!-- Boutons pour changer d'écran -->
+  <div class="switcher">
+    <button id="toScientific">Mode Scientifique</button>
+    <button id="toBase" class="hidden">Retour</button>
+  </div>
 
-</div>
+  <!-- Conteneur des écrans -->
+  <div class="screens-wrapper">
+    <!-- Écran 1 : Base -->
+    <div class="screen base-screen">
+      <div class="buttons-row">
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+      </div>
+      <div class="buttons-row">
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+      </div>
+      <div class="buttons-row">
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+      </div>
+      <div class="buttons-row">
+        <button>0</button><button>.</button><button>=</button><button>+</button>
+      </div>
+      <div class="buttons-row">
+        <button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
+      </div>
+    </div>
 
-<!-- Afficheur -->
+    <!-- Écran 2 : Scientifique + Base -->
+    <div class="screen scientific-screen hidden">
+      <div class="buttons-row">
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+      </div>
+      <div class="buttons-row">
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+      </div>
+      <div class="buttons-row">
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+      </div>
+      <div class="buttons-row">
+        <button>0</button><button>.</button><button>=</button><button>+</button>
+      </div>
+      <div class="buttons-row">
+        <button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
+      </div>
+      <div class="buttons-row">
+        <button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
+      </div>
+      <div class="buttons-row">
+        <button>ln(</button><button>log(</button><button>^</button><button>(</button><button>)</button>
+      </div>
+      <div class="buttons-row">
+        <button>π</button><button>e</button><button>!</button><button>Ans</button>
+      </div>
+    </div>
+  </div>
 
-<div id="display" class="display">0</div>
-
-<!-- Conteneur des écrans défilables horizontalement -->
-
-<div class="screens-wrapper">
-
-<!-- Écran 1 : options de base -->
-
-<div class="screen base-screen">
-
-<div class="buttons-row">
-
-<button>7</button><button>8</button><button>9</button><button>/</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>4</button><button>5</button><button>6</button><button>*</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>1</button><button>2</button><button>3</button><button>-</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>0</button><button>.</button><button>=</button><button>+</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
-
-</div>
-
-</div>
-
-<!-- Écran 2 : base + scientifique -->
-
-<div class="screen scientific-screen">
-  <!-- Reprend tous les boutons de base -->
-
-<div class="buttons-row">
-
-<button>7</button><button>8</button><button>9</button><button>/</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>4</button><button>5</button><button>6</button><button>*</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>1</button><button>2</button><button>3</button><button>-</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>0</button><button>.</button><button>=</button><button>+</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
-
-</div>
-
-<!-- Boutons scientifique -->
-
-<div class="buttons-row">
-
-<button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>ln(</button><button>log(</button><button>^</button><button>(</button><button>)</button>
-
-</div>
-
-<div class="buttons-row">
-
-<button>π</button><button>e</button><button>!</button><button>Ans</button>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
