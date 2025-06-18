@@ -4,129 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>HT CALCULATOR</title>
-  <link rel="icon" href="favicon.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png" />
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Style -->
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #f0f0f0;
-      user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      touch-action: manipulation;
-    }
-    #display {
-      width: 320px;
-      height: 60px;
-      background: #222;
-      color: #0f0;
-      font-size: 24px;
-      padding: 10px;
-      box-sizing: border-box;
-      overflow-x: auto;
-      white-space: nowrap;
-      border-radius: 6px;
-      margin: 15px 0;
-      text-align: right;
-    }
-    .buttons-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 8px;
-      flex-wrap: nowrap;
-      gap: 6px;
-    }
-    button {
-      flex: 1 1 0;
-      min-width: 40px;
-      padding: 12px 0;
-      font-size: 18px;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      background: #ddd;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #bbb;
-    }
-    .hidden {
-      display: none !important;
-    }
-    #toScientific, #toBase {
-      width: 320px;
-      margin: 10px 0;
-      background: #28a745;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-    }
-  </style>
 </head>
 <body>
-  <div id="display">0</div>
+  <main>
+    <div id="display" aria-live="polite" role="textbox" aria-label="Écran de calcul">0</div>
 
-  <!-- Bouton pour passer à écran scientifique -->
-  <button id="toScientific">Mode Scientifique</button>
-  <button id="toBase" class="hidden">Retour Mode Base</button>
-
-  <!-- Écran 1 : Options de base -->
-  <div class="base-screen">
-    <div class="buttons-row">
-      <button>7</button><button>8</button><button>9</button><button>/</button>
-    </div>
-    <div class="buttons-row">
-      <button>4</button><button>5</button><button>6</button><button>*</button>
-    </div>
-    <div class="buttons-row">
-      <button>1</button><button>2</button><button>3</button><button>-</button>
-    </div>
-    <div class="buttons-row">
-      <button>0</button><button>.</button><button>±</button><button>+</button>
-    </div>
-    <div class="buttons-row">
-      <button>C</button><button>=</button><button>(</button><button>)</button>
-    </div>
-    <div class="buttons-row">
-      <button>RAD/DEG</button>
-    </div>
-  </div>
-
-  <!-- Écran 2 : Options scientifique + base -->
-  <div class="scientific-screen hidden">
-    <!-- Base -->
-    <div class="buttons-row">
-      <button>7</button><button>8</button><button>9</button><button>/</button>
-    </div>
-    <div class="buttons-row">
-      <button>4</button><button>5</button><button>6</button><button>*</button>
-    </div>
-    <div class="buttons-row">
-      <button>1</button><button>2</button><button>3</button><button>-</button>
-    </div>
-    <div class="buttons-row">
-      <button>0</button><button>.</button><button>±</button><button>+</button>
-    </div>
-    <div class="buttons-row">
-      <button>C</button><button>=</button><button>(</button><button>)</button>
-    </div>
-    <div class="buttons-row">
-      <button>RAD/DEG</button>
+    <div id="mode-switch-wrapper">
+      <button id="toScientific" aria-pressed="false" aria-label="Passer en mode scientifique">Mode Scientifique</button>
+      <button id="toBase" class="hidden" aria-pressed="true" aria-label="Retour au mode de base">Retour Mode Base</button>
     </div>
 
-    <!-- Scientifique -->
-    <div class="buttons-row">
-      <button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
-    </div>
-    <div class="buttons-row">
-      <button>ln(</button><button>log(</button><button>exp(</button><button>^</button>
-    </div>
-  </div>
+    <!-- Écran Base -->
+    <section class="base-screen">
+      <div class="buttons-row">
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+      </div>
+      <div class="buttons-row">
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+      </div>
+      <div class="buttons-row">
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+      </div>
+      <div class="buttons-row">
+        <button>0</button><button>.</button><button>±</button><button>+</button>
+      </div>
+      <div class="buttons-row">
+        <button>C</button><button>=</button><button>(</button><button>)</button>
+      </div>
+      <div class="buttons-row">
+        <button>RAD/DEG</button>
+      </div>
+    </section>
+
+    <!-- Écran Scientifique -->
+    <section class="scientific-screen hidden">
+      <!-- Base -->
+      <div class="buttons-row">
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+      </div>
+      <div class="buttons-row">
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+      </div>
+      <div class="buttons-row">
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+      </div>
+      <div class="buttons-row">
+        <button>0</button><button>.</button><button>±</button><button>+</button>
+      </div>
+      <div class="buttons-row">
+        <button>C</button><button>=</button><button>(</button><button>)</button>
+      </div>
+      <div class="buttons-row">
+        <button>RAD/DEG</button>
+      </div>
+
+      <!-- Scientifique -->
+      <div class="buttons-row">
+        <button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
+      </div>
+      <div class="buttons-row">
+        <button>ln(</button><button>log(</button><button>exp(</button><button>^</button>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker enregistré'))
+        .catch(err => console.warn('Erreur service worker', err));
+    }
+  </script>
 </body>
 </html>
