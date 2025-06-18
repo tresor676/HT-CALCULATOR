@@ -2,36 +2,105 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>HT CALCULATOR</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="main.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
   <meta name="theme-color" content="#202124" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+  <title>Calculatrice Double Écran</title>
 </head>
 <body>
-  <div id="app">
-    <header>
-      <button onclick="switchTab('base')">De base</button>
-      <button onclick="switchTab('scientific')">Scientifique</button>
-      <button onclick="switchTab('settings')">Paramètres</button>
-    </header>
-    <main>
-      <input id="display" type="text" readonly />
-      <div id="buttons-base" class="button-group"></div>
-      <div id="buttons-scientific" class="button-group hidden"></div>
-      <div id="settings" class="hidden">
-        <h3>Paramètres</h3>
-        <label>Langue (dictée) : <select id="speech-lang"></select></label>
-        <label>Langue (lecture) : <select id="read-lang"></select></label>
-        <button onclick="toggleTheme()">Changer le thème</button>
-        <button onclick="toggleOrientation()">Changer l'orientation</button>
-        <button onclick="toggleAngleMode()">Changer Degrés/Radians</button>
-        <button onclick="shareApp()">Partager l'app</button>
-        <p>HT CALCULATOR - À propos : Version Offline PWA</p>
-      </div>
-    </main>
+  <!-- Afficheur unique -->
+  <div class="afficheur">
+    <div id="expression">0</div>
+    <div id="resultat">= 0</div>
   </div>
+
+  <!-- Conteneur scrollable horizontal -->
+  <div class="scroll-container">
+    <!-- Écran 1 : Base -->
+    <section class="boutons-screen">
+      <div class="boutons">
+        <button data-fn="7">7</button>
+        <button data-fn="8">8</button>
+        <button data-fn="9">9</button>
+        <button data-fn="/">÷</button>
+
+        <button data-fn="4">4</button>
+        <button data-fn="5">5</button>
+        <button data-fn="6">6</button>
+        <button data-fn="*">×</button>
+
+        <button data-fn="1">1</button>
+        <button data-fn="2">2</button>
+        <button data-fn="3">3</button>
+        <button data-fn="-">−</button>
+
+        <button data-fn="0">0</button>
+        <button data-fn=".">.</button>
+        <button data-fn="C">C</button>
+        <button data-fn="+">+</button>
+
+        <button data-fn="←">←</button>
+        <button data-fn="=">=</button>
+      </div>
+    </section>
+
+    <!-- Écran 2 : Scientifique + Base -->
+    <section class="boutons-screen">
+      <div class="boutons">
+        <!-- Scientifiques -->
+        <button data-fn="sin(">sin</button>
+        <button data-fn="cos(">cos</button>
+        <button data-fn="tan(">tan</button>
+        <button data-fn="√(">√</button>
+
+        <button data-fn="log(">log</button>
+        <button data-fn="ln(">ln</button>
+        <button data-fn="^2">x²</button>
+        <button data-fn="^">xʸ</button>
+
+        <button data-fn="π">π</button>
+        <button data-fn="e">e</button>
+        <button id="angle-mode">DEG</button>
+        <button data-fn="(">(</button>
+        <button data-fn=")">)</button>
+
+        <!-- Base (répétée ici) -->
+        <button data-fn="7">7</button>
+        <button data-fn="8">8</button>
+        <button data-fn="9">9</button>
+        <button data-fn="/">÷</button>
+
+        <button data-fn="4">4</button>
+        <button data-fn="5">5</button>
+        <button data-fn="6">6</button>
+        <button data-fn="*">×</button>
+
+        <button data-fn="1">1</button>
+        <button data-fn="2">2</button>
+        <button data-fn="3">3</button>
+        <button data-fn="-">−</button>
+
+        <button data-fn="0">0</button>
+        <button data-fn=".">.</button>
+        <button data-fn="C">C</button>
+        <button data-fn="+">+</button>
+
+        <button data-fn="←">←</button>
+        <button data-fn="=">=</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('✅ Service Worker enregistré'))
+      .catch(err => console.error('Erreur Service Worker', err));
+  }
+</script>
+
 </body>
 </html>
