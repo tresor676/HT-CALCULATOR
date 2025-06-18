@@ -1,86 +1,172 @@
-/* Empêcher zoom et scroll vertical */
+/* Reset basique */
+
+* {
+
+box-sizing: border-box;
+
+margin: 0;
+
+padding: 0;
+
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+/* Empêche zoom/défilement vertical */
+
 html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  touch-action: manipulation;
-  user-select: none;
-  font-family: Arial, sans-serif;
-  background-color: #202124;
-  color: #fff;
-  height: 100vh;
+
+overflow-x: hidden;
+
+overflow-y: hidden;
+
+touch-action: manipulation;
+
+user-select: none;
+
+-webkit-user-select: none;
+
+-moz-user-select: none;
+
+-ms-user-select: none;
+
+height: 100vh;
+
+width: 100vw;
+
 }
 
-/* Afficheur global */
-.afficheur {
-  background: #111;
-  padding: 15px;
-  font-size: 1.3em;
-  text-align: right;
-  height: 80px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #333;
+/* Logo centré */
+
+.logo-container {
+
+text-align: center;
+
+padding: 10px 0;
+
+background-color: #222;
+
 }
 
-#expression {
-  font-size: 1.2em;
-  color: #0f0;
-  overflow-wrap: break-word;
+.logo-container img {
+
+height: 50px;
+
+max-width: 90%;
+
 }
 
-#resultat {
-  font-size: 1em;
-  color: #ccc;
+/* Afficheur expression */
+
+#display {
+
+background-color: #111;
+
+color: #eee;
+
+padding: 15px;
+
+font-size: 1.5rem;
+
+text-align: right;
+
+min-height: 2.5em;
+
+overflow-x: auto;
+
+white-space: nowrap;
+
+user-select: text;
+
 }
 
-/* Conteneur scrollable horizontal */
-.scroll-container {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  height: calc(100vh - 80px);
+/* Conteneur des écrans en flex horizontal et défilable */
+
+.screens-wrapper {
+display: flex;
+
+width: 100vw;
+
+height: calc(100vh - 140px); /* ajuster hauteur écran - logo - afficheur */
+
+overflow-x: auto;
+
+scroll-snap-type: x mandatory;
+
+-webkit-overflow-scrolling: touch;
+
 }
 
-.boutons-screen {
-  min-width: 100%;
-  scroll-snap-align: start;
-  padding: 10px;
-  box-sizing: border-box;
+/* Chaque écran prend toute la largeur */
+
+.screen {
+
+flex: 0 0 100vw;
+
+scroll-snap-align: start;
+
+padding: 10px;
+
+background-color: #333;
+
+overflow-y: auto;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: flex-start;
+
 }
 
-/* Grille de boutons */
-.boutons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+/* Ligne de boutons */
+
+.buttons-row {
+
+display: flex;
+
+justify-content: center;
+
+margin: 6px 0;
+
+gap: 8px;
+
 }
+
+/* Boutons */
 
 button {
-  font-size: 1.2em;
-  padding: 15px;
-  border: none;
-  border-radius: 6px;
-  background-color: #333;
-  color: white;
-  transition: background-color 0.2s;
+
+flex: 1 1 50px;
+
+max-width: 60px;
+
+min-width: 40px;
+
+height: 45px;
+
+font-size: 1rem;
+
+background-color: #444;
+
+color: white;
+
+border: none;
+
+border-radius: 5px;
+
+cursor: pointer;
+
+user-select: none;
+
+transition: background-color 0.2s ease;
+
 }
 
 button:active {
-  background-color: #444;
-}
 
-button#angle-mode {
-  background-color: #0057e7;
+background-color: #666;
 }
+button:hover {
 
-.image-personnalisee {
-  text-align: center;
-  padding: 10px;
-}
-
-.image-personnalisee img {
-  max-width: 90%;
-  height: auto;
-  border-radius: 10px;
-}
+background-color: #555;}
