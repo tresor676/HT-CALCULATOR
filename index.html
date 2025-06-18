@@ -1,112 +1,142 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-  <meta name="theme-color" content="#202124" />
-  <title>Calculatrice Double Écran</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icons/icon-192.png" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="icons/icon-512.png" />
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,
+
+user-scalable=no" />
+
+<title>HT CALCULATOR</title>
+
+<!-- Favicon -->
+
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+<!-- Manifest PWA -->
+
+<link rel="manifest" href="manifest.json" />
+
+<link rel="stylesheet" href="style.css" />
+
 </head>
+
 <body>
-  <!-- Afficheur unique -->
-  <div class="afficheur">
-    <div id="expression">0</div>
-    <div id="resultat">= 0</div>
-  </div>
 
-  <!-- Conteneur scrollable horizontal -->
-  <div class="scroll-container">
-    <!-- Écran 1 : Base -->
-    <section class="boutons-screen">
-      <div class="boutons">
-        <button data-fn="7">7</button>
-        <button data-fn="8">8</button>
-        <button data-fn="9">9</button>
-        <button data-fn="/">÷</button>
+<!-- Logo personnalisé -->
 
-        <button data-fn="4">4</button>
-        <button data-fn="5">5</button>
-        <button data-fn="6">6</button>
-        <button data-fn="*">×</button>
+<div class="logo-container">
 
-        <button data-fn="1">1</button>
-        <button data-fn="2">2</button>
-        <button data-fn="3">3</button>
-        <button data-fn="-">−</button>
+<img src="images/ht-logo.png" alt="HT Logo personnalisé" />
 
-        <button data-fn="0">0</button>
-        <button data-fn=".">.</button>
-        <button data-fn="C">C</button>
-        <button data-fn="+">+</button>
-
-        <button data-fn="←">←</button>
-        <button data-fn="=">=</button>
-      </div>
-    </section>
-
-    <!-- Écran 2 : Scientifique + Base -->
-    <section class="boutons-screen">
-      <div class="boutons">
-        <!-- Scientifiques -->
-        <button data-fn="sin(">sin</button>
-        <button data-fn="cos(">cos</button>
-        <button data-fn="tan(">tan</button>
-        <button data-fn="√(">√</button>
-
-        <button data-fn="log(">log</button>
-        <button data-fn="ln(">ln</button>
-        <button data-fn="^2">x²</button>
-        <button data-fn="^">xʸ</button>
-
-        <button data-fn="π">π</button>
-        <button data-fn="e">e</button>
-        <button id="angle-mode">DEG</button>
-        <button data-fn="(">(</button>
-        <button data-fn=")">)</button>
-
-        <!-- Base (répétée ici) -->
-        <button data-fn="7">7</button>
-        <button data-fn="8">8</button>
-        <button data-fn="9">9</button>
-        <button data-fn="/">÷</button>
-
-        <button data-fn="4">4</button>
-        <button data-fn="5">5</button>
-        <button data-fn="6">6</button>
-        <button data-fn="*">×</button>
-
-        <button data-fn="1">1</button>
-        <button data-fn="2">2</button>
-        <button data-fn="3">3</button>
-        <button data-fn="-">−</button>
-
-        <button data-fn="0">0</button>
-        <button data-fn=".">.</button>
-        <button data-fn="C">C</button>
-        <button data-fn="+">+</button>
-
-        <button data-fn="←">←</button>
-        <button data-fn="=">=</button>
-      </div>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('✅ Service Worker enregistré'))
-      .catch(err => console.error('Erreur Service Worker', err));
-  }
-</script>
-<!-- image personnalisée visible -->
-<div class="image-personnalisee">
-  <img src="icons/logo.png" alt="HT Logo" />
 </div>
 
+<!-- Afficheur -->
+
+<div id="display" class="display">0</div>
+
+<!-- Conteneur des écrans défilables horizontalement -->
+
+<div class="screens-wrapper">
+
+<!-- Écran 1 : options de base -->
+
+<div class="screen base-screen">
+
+<div class="buttons-row">
+
+<button>7</button><button>8</button><button>9</button><button>/</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>4</button><button>5</button><button>6</button><button>*</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>1</button><button>2</button><button>3</button><button>-</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>0</button><button>.</button><button>=</button><button>+</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
+
+</div>
+
+</div>
+
+<!-- Écran 2 : base + scientifique -->
+
+<div class="screen scientific-screen">
+  <!-- Reprend tous les boutons de base -->
+
+<div class="buttons-row">
+
+<button>7</button><button>8</button><button>9</button><button>/</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>4</button><button>5</button><button>6</button><button>*</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>1</button><button>2</button><button>3</button><button>-</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>0</button><button>.</button><button>=</button><button>+</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>C</button><button>±</button><button>%</button><button>RAD/DEG</button>
+
+</div>
+
+<!-- Boutons scientifique -->
+
+<div class="buttons-row">
+
+<button>sin(</button><button>cos(</button><button>tan(</button><button>√(</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>ln(</button><button>log(</button><button>^</button><button>(</button><button>)</button>
+
+</div>
+
+<div class="buttons-row">
+
+<button>π</button><button>e</button><button>!</button><button>Ans</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
