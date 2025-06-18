@@ -26,10 +26,6 @@ function addListenersToButtons(container) {
           expression = '';
           break;
 
-        case '←':
-          expression = expression.slice(0, -1);
-          break;
-
         case '=':
           try {
             // Remplacer √( par sqrt(
@@ -40,7 +36,7 @@ function addListenersToButtons(container) {
             if (angleMode === 'DEG') {
               // On remplace sin(x) par sin(x deg en rad)
               expr = expr.replace(/(sin|cos|tan)\(([^()]+)\)/g, (match, fn, valInside) => {
-                return `${fn}((${valInside}) * pi / 180)`;
+                return ${fn}((${valInside}) * pi / 180);
               });
             }
 
@@ -59,22 +55,12 @@ function addListenersToButtons(container) {
           break;
 
         case '±':
+          // On change le signe du nombre le plus récent (ou expression vide)
           if (expression.startsWith('-')) {
             expression = expression.slice(1);
           } else {
             expression = '-' + expression;
           }
-          break;
-
-        case 'RAD/DEG':
-          // On ne modifie pas expression, on change juste le mode
-          angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
-
-          // Mettre à jour les boutons (si ils existent)
-          if (angleToggleBasic) angleToggleBasic.textContent = angleMode;
-          if (angleToggleSci) angleToggleSci.textContent = angleMode;
-
-          alert(`Mode changé en ${angleMode}`);
           break;
 
         default:
@@ -106,21 +92,17 @@ modeToggle.addEventListener('click', () => {
 });
 
 // Gestion toggle DEG/RAD (basique)
-if(angleToggleBasic) {
-  angleToggleBasic.addEventListener('click', () => {
-    angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
-    angleToggleBasic.textContent = angleMode;
-    if(angleToggleSci) angleToggleSci.textContent = angleMode;
-  });
-}
+angleToggleBasic.addEventListener('click', () => {
+  angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
+  angleToggleBasic.textContent = angleMode;
+  if(angleToggleSci) angleToggleSci.textContent = angleMode;
+});
 
 // Gestion toggle DEG/RAD (scientifique)
-if(angleToggleSci) {
-  angleToggleSci.addEventListener('click', () => {
-    angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
-    angleToggleSci.textContent = angleMode;
-    if(angleToggleBasic) angleToggleBasic.textContent = angleMode;
-  });
-}
+angleToggleSci.addEventListener('click', () => {
+  angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
+  angleToggleSci.textContent = angleMode;
+  if(angleToggleBasic) angleToggleBasic.textContent = angleMode;
+});
 
 updateDisplay();
