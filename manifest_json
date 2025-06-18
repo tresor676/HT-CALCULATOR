@@ -1,5 +1,5 @@
 {
-  "name": "HT Calculator",
+  "name": "HT CALCULATOR",
   "short_name": "HTCalc",
   "start_url": "./index.html",
   "display": "standalone",
@@ -7,12 +7,12 @@
   "theme_color": "#28a745",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "favicon.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
