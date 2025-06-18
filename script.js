@@ -4,11 +4,21 @@ const btnToSci = document.getElementById('toScientific');
 const btnToBase = document.getElementById('toBase');
 const display = document.getElementById('display');
 
+let expression = '';
+let angleMode = 'DEG'; // Mode par défaut
+
+function updateDisplay() {
+  display.textContent = expression || '0';
+}
+
+// Gestion changement mode
 btnToSci.addEventListener('click', () => {
   baseScreen.classList.add('hidden');
   sciScreen.classList.remove('hidden');
   btnToSci.classList.add('hidden');
   btnToBase.classList.remove('hidden');
+  btnToSci.setAttribute('aria-pressed', 'true');
+  btnToBase.setAttribute('aria-pressed', 'false');
 });
 
 btnToBase.addEventListener('click', () => {
@@ -16,15 +26,11 @@ btnToBase.addEventListener('click', () => {
   baseScreen.classList.remove('hidden');
   btnToBase.classList.add('hidden');
   btnToSci.classList.remove('hidden');
+  btnToSci.setAttribute('aria-pressed', 'false');
+  btnToBase.setAttribute('aria-pressed', 'true');
 });
 
-let expression = '';
-let angleMode = 'DEG';
-
-function updateDisplay() {
-  display.textContent = expression || '0';
-}
-
+// Gestion des boutons calculatrice
 document.querySelectorAll('.base-screen button, .scientific-screen button').forEach(button => {
   button.addEventListener('click', () => {
     const val = button.textContent;
@@ -33,6 +39,7 @@ document.querySelectorAll('.base-screen button, .scientific-screen button').forE
       case 'C':
         expression = '';
         break;
+
       case '=':
         try {
           let expr = expression;
@@ -48,14 +55,14 @@ document.querySelectorAll('.base-screen button, .scientific-screen button').forE
 
           if (angleMode === 'DEG') {
             expr = expr
-              .replace(/sin\(([^)]+)\)/g, (match, p1) => `Math.sin((${p1})*Math.PI/180)`)
-              .replace(/cos\(([^)]+)\)/g, (match, p1) => `Math.cos((${p1})*Math.PI/180)`)
-              .replace(/tan\(([^)]+)\)/g, (match, p1) => `Math.tan((${p1})*Math.PI/180)`);
+              .replace(/sin\(([^)]+)\)/g, (m, p1) => `Math.sin((${p1})*Math.PI/180)`)
+              .replace(/cos\(([^)]+)\)/g, (m, p1) => `Math.cos((${p1})*Math.PI/180)`)
+              .replace(/tan\(([^)]+)\)/g, (m, p1) => `Math.tan((${p1})*Math.PI/180)`);
           } else {
             expr = expr
-              .replace(/sin\(([^)]+)\)/g, `Math.sin($1)`)
-              .replace(/cos\(([^)]+)\)/g, `Math.cos($1)`)
-              .replace(/tan\(([^)]+)\)/g, `Math.tan($1)`);
+              .replace(/sin\(([^)]+)\)/g, 'Math.sin($1)')
+              .replace(/cos\(([^)]+)\)/g, 'Math.cos($1)')
+              .replace(/tan\(([^)]+)\)/g, 'Math.tan($1)');
           }
 
           let result = eval(expr);
@@ -93,16 +100,3 @@ document.querySelectorAll('.base-screen button, .scientific-screen button').forE
 });
 
 updateDisplay();
-
-// Bloquer zoom multi-touch
-document.addEventListener('touchstart', function (e) {
-  if (e.touches.length > 1) e.preventDefault();
-}, { passive: false });
-
-// Bloquer double tap zoom
-let lastTouchEnd = 0;
-document.addEventListener('touchend', function (e) {
-  let now = (new Date()).getTime();
-  if (now - lastTouchEnd <= 300) e.preventDefault();
-  lastTouchEnd = now;
-}, false);
